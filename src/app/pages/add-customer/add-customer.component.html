@@ -1,0 +1,68 @@
+<div class="container mt-3">
+    <div class="row g-5">
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-header border-0 pb-0">
+                    <h4 class="h4 card-title mb-2">Customer Information</h4>
+                </div>
+                <div class="card-body">
+                    <form novalidate [formGroup]="customerForm">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label for="first_name">First Name:</label>
+                                <input type="text" id="first_name" class="form-control" formControlName="first_name" [(ngModel)]="cliente.first_name" placeholder="First Name" required>
+                                <div *ngIf="customerForm?.get('first_name')?.hasError('required') && (customerForm?.get('first_name')?.touched || customerForm?.get('first_name')?.dirty)" class="text-danger">
+                                    Field is required
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="last_name">Last Name:</label>
+                                <input type="text" id="last_name" class="form-control" formControlName="last_name" [(ngModel)]="cliente.last_name" placeholder="Last Name" required>
+                                <div *ngIf="customerForm?.get('last_name')?.hasError('required') && (customerForm?.get('last_name')?.touched || customerForm?.get('last_name')?.dirty)" class="text-danger">
+                                    Field is required
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="address">Address:</label>
+                            <input type="text" id="address" class="form-control" formControlName="address" [(ngModel)]="cliente.address" placeholder="1234 Main St" required>
+                            <div *ngIf="customerForm?.get('address')?.hasError('required') && (customerForm?.get('address')?.touched || customerForm?.get('address')?.dirty)" class="text-danger">
+                                Field is required
+                              </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email">Email:</label>
+                            <input type="text" id="email" class="form-control" formControlName="email" [(ngModel)]="cliente.email" placeholder="you@example.com" required>
+                            <div *ngIf="customerForm?.get('email')?.hasError('required') && (customerForm?.get('email')?.touched || customerForm?.get('email')?.dirty)" class="text-danger">
+                                Field is required
+                              </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="phone">Phone Number:</label>
+                            <input type="text" id="phone" class="form-control" formControlName="phone" [(ngModel)]="cliente.phone" placeholder="9999999999" required>
+                            <div *ngIf="customerForm?.get('phone')?.hasError('required') && (customerForm?.get('phone')?.touched || customerForm?.get('phone')?.dirty)" class="text-danger">
+                                Field is required
+                              </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="zip_code">Zip Code:</label>
+                            <input type="text" id="zip_code" class="form-control" formControlName="zip_code" [(ngModel)]="cliente.zip_code" placeholder="07000" required>
+                            <div *ngIf="customerForm?.get('zip_code')?.hasError('required') && (customerForm?.get('zip_code')?.touched || customerForm?.get('zip_code')?.dirty)" class="text-danger">
+                                Field is required
+                              </div>
+                        </div>
+                        <hr class="my-4">
+                        <div class="mb-3 text-end">
+                            <button type="button" class="btn btn-outline-secondary me-2" (click)="cancel()">Cancel</button>
+                            <button *ngIf="!isEdit" type="submit" class="btn btn-primary" (click)="saveCustomer()">Save</button>
+                            <button *ngIf="isEdit" type="submit" class="btn btn-primary" (click)="updateCustomer()">Update</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-8">
+            <app-customer-list (onSelected)="onSelectedCustomer($event)"></app-customer-list>
+        </div>
+    </div>
+  </div>

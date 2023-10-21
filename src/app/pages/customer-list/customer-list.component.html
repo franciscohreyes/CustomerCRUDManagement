@@ -1,0 +1,35 @@
+<ng-container *ngIf="customers.length == 0">
+    <div class="py-5 text-center">
+        <img class="d-block mx-auto mb-4" src="../../../assets/images/ic_customer.png" alt="" width="64" height="64">
+        <p class="lead">Start by adding a customer to view it here</p>
+    </div>
+</ng-container>
+<ng-container *ngIf="customers.length > 0">
+    <h4 class="mb-4">Customer List</h4>
+    <div class="d-flex justify-content-end">
+      <button (click)="deleteAllCustomers()" class="btn btn-danger btn-sm">Delete all customers</button>
+    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Full Name</th>
+          <th>Email</th>
+          <th>Phone Number</th>
+          <th>Zip Code</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let customer of customers">
+          <td>{{ customer.first_name }}</td>
+          <td>{{ customer.last_name }}</td>
+          <td>{{ customer.phone }}</td>
+          <td>{{ customer.zip_code }}</td>
+          <td>
+            <a (click)="onSelectedCustomer(customer)" class="btn btn-light btn-sm me-1">Edit</a>
+            <button (click)="openModalConfirm(customer, '')" class="btn btn-danger btn-sm">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+</ng-container>
